@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../auth/presentation/screens/login_screen.dart';
+import '../../../auth/presentation/screens/register_screen.dart';
+
 class OnbordingScreen extends StatefulWidget {
   const OnbordingScreen({super.key});
 
@@ -31,11 +34,6 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
 
   void nextPage() {
     if (currentPage < pages.length - 1) {
-      _pageController.animateToPage(
-        currentPage + 1,
-        duration: const Duration(milliseconds: 600),
-        curve: Curves.easeInOut,
-      );
     } else {
       Navigator.pushReplacement(
         context,
@@ -116,10 +114,9 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
           ),
           TextButton(
             onPressed: () {
-              _pageController.animateToPage(
-                0,
-                duration: const Duration(milliseconds: 600),
-                curve: Curves.easeInOut,
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const LoginScreen()),
               );
             },
             child: const Text(
@@ -130,18 +127,6 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
           const SizedBox(height: 40),
         ],
       ),
-    );
-  }
-}
-
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Register")),
-      body: const Center(child: Text("Register Screen")),
     );
   }
 }
